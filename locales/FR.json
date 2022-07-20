@@ -1,0 +1,46 @@
+{
+  "translation": {
+    "generic": {
+      "brand": "MySuperShop",
+      "meta-description": "E-commerce store built with Next.js and Stripe checkout by AlterClass.io",
+      "loading": "Chargement",
+      "title-shop": "France-Moustique",
+      "title-line": "Solutions anti-nuisible"
+    },
+    "products": {
+      "price": "Prix",
+      "quantity": "Quantité",
+      "disponibility": "Disponibilité",
+      "in-stock": "En stock",
+      "product": "Produit",
+      "adding-one-item": "Ajout 1 produit..."
+    },
+    "cart": {
+      "add": "Ajout",
+      "added": "Ajouté",
+      "my-cart": "Mon panier",
+      "remove-all": "Tout retirer",
+      "your-cart": "Votre panier",
+      "your-cart-is-empty": "Votre panier est vide.",
+      "we-have-the-product-you-need": "Nous avons le produit qu'il vous faut",
+      "adding": "Ajout",
+      "add-to-cart": "Ajouter au panier",
+      "here": "ici !",
+      "total": "Total",
+      "redirecting": "Redirection",
+      "payment": "Paiement"
+    },
+    "footer": {
+      "tagline": "Depuis 2021",
+      "sub-tagline": "test"
+    },
+    "header": {
+      "tagline": "",
+      "sub-tagline": ""
+    },
+    "testimonials": {
+      "tagline": "",
+      "sub-tagline": ""
+    }
+  }
+}
