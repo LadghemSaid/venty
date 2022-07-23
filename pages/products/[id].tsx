@@ -12,8 +12,10 @@ import AddToCartButton from "@/components/AddToCartButton";
 import Price from "@/components/Price";
 import ProductImage from "@/components/ProductImage";
 import i18next from "i18next";
-import { SHOW_TESTIMONIALS } from "contants";
+import { SHOW_ARTICLE, SHOW_TESTIMONIALS } from "contants";
 import FakeCounter from "@/components/FakeCounter";
+import Rating from "@/components/Rating";
+import Article from "@/components/Article";
 
 const Product = (props) => {
   const router = useRouter();
@@ -41,9 +43,12 @@ const Product = (props) => {
     }
 
     setAdding(false);
-    toast.success(`${qty} ${props.name} ${i18next.t("added")}`, {
-      id: toastId.current,
-    });
+    toast.success(
+      `${qty} ${props.name} ${i18next.t("cart.added").toLowerCase()}`,
+      {
+        id: toastId.current,
+      }
+    );
     setQty(1);
   }, [cartCount]);
   return router.isFallback ? (
@@ -73,6 +78,7 @@ const Product = (props) => {
           <div className="flex-1 w-full md:max-w-md border border-opacity-50 rounded-md shadow-lg p-6">
             {/* Availbility */}
             <Availbility name={props.name} />
+            <Rating rate={props?.rating?.rate} count={props?.rating?.count} />
 
             {/* Price */}
             <Price price={props.price} />
@@ -92,6 +98,7 @@ const Product = (props) => {
         </div>
         <FakeCounter product={props} />
         {SHOW_TESTIMONIALS && <Testimonials />}
+        {SHOW_ARTICLE && <Article name={props.name} />}
       </div>
     </>
   );
