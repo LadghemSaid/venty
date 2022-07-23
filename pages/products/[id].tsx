@@ -12,6 +12,8 @@ import AddToCartButton from "@/components/AddToCartButton";
 import Price from "@/components/Price";
 import ProductImage from "@/components/ProductImage";
 import i18next from "i18next";
+import { SHOW_TESTIMONIALS } from "contants";
+import FakeCounter from "@/components/FakeCounter";
 
 const Product = (props) => {
   const router = useRouter();
@@ -88,7 +90,8 @@ const Product = (props) => {
             </div>
           </div>
         </div>
-        <Testimonials />
+        <FakeCounter product={props} />
+        {SHOW_TESTIMONIALS && <Testimonials />}
       </div>
     </>
   );

@@ -8,6 +8,15 @@ import { Toaster } from "react-hot-toast";
 import i18next from "i18next";
 import FR from "locales/FR.json";
 import EN from "locales/EN.json";
+import { useEffect, useReducer, useState, createContext } from "react";
+import { ItemsLeftReducer, TimeReducer } from "@/hooks/use-local-timer-reducer";
+import products from "products";
+import Cookies from "js-cookie";
+import { initializeRandomCookies } from "@/lib/utils";
+import { FakeDataMachine } from "machines/FakeDataMachine";
+import { useMachine } from "@xstate/react";
+import moment from "moment";
+
 i18next.init({
   lng: "fr", // if you're using a language detector, do not define the lng option
   debug: false,
@@ -16,7 +25,73 @@ i18next.init({
     en: EN,
   },
 });
+export const ProductStore = createContext({
+  productList: [],
+  setProductList: null,
+  fakeDataIteration: 1,
+});
+
 function MyApp({ Component, pageProps }) {
+  // const [state, send] = useMachine(FakeDataMachine);
+
+  const [productList, setProductList] = useState(
+    initializeRandomCookies(products)
+  );
+  const [fakeDataIteration, setFakeDataIteration] = useState(1);
+
+  const [timer, dispatchTimer] = useReducer(TimeReducer, 0);
+  const item = productList[Math.floor(Math.random() * productList.length)];
+
+  useEffect(() => {
+    setInterval(() => {
+      dispatchTimer({ type: "Increment" });
+    }, 2000);
+  }, []);
+
+  if (moment.unix(item.eventTime).isBefore(moment())) {
+    console.log("isBefore");
+    let tmpEvtTime = moment()
+      .add(Math.floor(Math.random() * 20) + 10, "hours")
+      .add(Math.floor(Math.random() * 60) + 1, "minutes")
+      .add(Math.floor(Math.random() * 60) + 1, "seconds")
+      .unix();
+    Cookies.set("eventTime-" + item.id, tmpEvtTime);
+    setProductList(
+      productList.map((i) => {
+        if (i.id === item.id) {
+          i.eventTime = tmpEvtTime;
+        }
+        return i;
+      })
+    );
+  }
+  if (timer > 7 * fakeDataIteration) {
+    if (item.itemsLeft > 2) {
+      Cookies.set("itemsLeft-" + item.id, item.itemsLeft - 1);
+      setProductList(
+        productList.map((i) => {
+          if (i.id === item.id) {
+            i.itemsLeft--;
+          }
+          return i;
+        })
+      );
+      setFakeDataIteration(fakeDataIteration + 1);
+    } else {
+      //Reinitialise le compteur à 12... pas assez realiste autant laisser a 2 left
+      // setProductList(
+      //   productList.map((i) => {
+      //     if (i.id === item.id) {
+      //       i.itemsLeft = 12;
+      //     }
+      //     return i;
+      //   })
+      // );
+      // setFakeDataIteration(1);
+    }
+    dispatchTimer({ type: "Reset" });
+  }
+
   return (
     <>
       <Head>
@@ -33,15 +108,19 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <CartProvider>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow">
-            <Component {...pageProps} />
-          </main>
-          <Footer />
-        </div>
-      </CartProvider>
+      <ProductStore.Provider
+        value={{ productList, setProductList, fakeDataIteration }}
+      >
+        <CartProvider>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-grow">
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </div>
+        </CartProvider>
+      </ProductStore.Provider>
       <Toaster />
     </>
   );

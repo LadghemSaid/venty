@@ -35,7 +35,6 @@ const Cart = () => {
     await stripe.redirectToCheckout({ sessionId: id });
   };
 
-  console.log(cartDetails);
   return (
     <>
       <Head>

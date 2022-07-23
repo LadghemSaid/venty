@@ -1,20 +1,9 @@
 import React, { useContext, useReducer, useMemo } from "react";
+import { cartValues } from "types";
 import useLocalStorageReducer from "./use-local-storage-reducer";
 
 // Reducers
-type cartValues = {
-  cartDetails?: {
-    [key: string]: {
-      id: string;
-      quantity: number;
-      price: number;
-      images: string[];
-      name: string;
-    };
-  };
-  cartCount?: number;
-  totalPrice?: number;
-};
+
 const initialCartValues: cartValues = {
   cartDetails: {},
   cartCount: 0,

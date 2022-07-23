@@ -5,7 +5,15 @@
       "meta-description": "E-commerce store built with Next.js and Stripe checkout by AlterClass.io",
       "loading": "Chargement",
       "title-shop": "France-Moustique",
-      "title-line": "Solutions anti-nuisible"
+      "destokage-finish-in": "Le destockage se termine dans",
+      "satisfied-or-refund": "Satisfait ou remboursé.",
+      "left-only": "Plus que",
+      "items-in-stock": "{{itemsCount}} ventilateurs",
+      "title-line": "Solutions anti-nuisible",
+      "days": "Jours",
+      "hours": "Heures",
+      "minutes": "Minutes",
+      "secondes": "Secondes"
     },
     "products": {
       "price": "Prix",
