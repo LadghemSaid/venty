@@ -1,15 +1,15 @@
 {
   "translation": {
     "generic": {
-      "brand": "MySuperShop",
-      "meta-description": "E-commerce store built with Next.js and Stripe checkout by AlterClass.io",
+      "brand": "Venty Store",
+      "meta-description": "Ventilateurs portable, pliable, téléscopique, rechargeable en livraison",
       "loading": "Chargement",
-      "title-shop": "France-Moustique",
+      "title-shop": "Venty Store",
       "destokage-finish-in": "Le destockage se termine dans",
       "satisfied-or-refund": "Satisfait ou remboursé.",
       "left-only": "Plus que",
       "items-in-stock": "{{itemsCount}} ventilateurs",
-      "title-line": "Solutions anti-nuisible",
+      "title-line": "Solutions rafraichissante",
       "days": "Jours",
       "hours": "Heures",
       "minutes": "Minutes",
@@ -18,6 +18,7 @@
     "products": {
       "price": "Prix",
       "quantity": "Quantité",
+      "variantes": "Variantes",
       "disponibility": "Disponibilité",
       "in-stock": "En stock",
       "product": "Produit",
@@ -36,11 +37,12 @@
       "here": "ici !",
       "total": "Total",
       "redirecting": "Redirection",
-      "payment": "Paiement"
+      "payment": "Paiement",
+      "payment-secure": "Paiement sécurisé"
     },
     "footer": {
-      "tagline": "Depuis 2021",
-      "sub-tagline": "test"
+      "tagline": "Tous droits réservés.",
+      "sub-tagline": ""
     },
     "header": {
       "tagline": "",

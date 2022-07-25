@@ -3,8 +3,10 @@ import i18next from "i18next";
 
 export default ({ setQty, qty }) => {
   return (
-    <>
-      <p className="text-gray-500">{i18next.t("products.quantity")}:</p>
+    <div className="flex-col">
+      <p className="text-gray-500">
+        <>{i18next.t("products.quantity")}:</>
+      </p>
       <div className="mt-1 flex items-center space-x-3">
         <button
           onClick={() => setQty((prev) => prev - 1)}
@@ -21,6 +23,6 @@ export default ({ setQty, qty }) => {
           <PlusSmIcon className="w-6 h-6 flex-shrink-0 " />
         </button>
       </div>
-    </>
+    </div>
   );
 };

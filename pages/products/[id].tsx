@@ -17,15 +17,20 @@ import FakeCounter from "@/components/FakeCounter";
 import Rating from "@/components/Rating";
 import Article from "@/components/Article";
 import { redirectToCheckout } from "@/lib/get-stripe";
+import { ProductType, variantesType } from "types";
+import Variantes from "@/components/Variantes";
 
-const Product = (props) => {
+const Product = (props: ProductType) => {
   const router = useRouter();
   const { cartDetails, cartCount, addItem } = useShoppingCart();
-  const [qty, setQty] = useState(1);
-  const [adding, setAdding] = useState(false);
+  const [qty, setQty] = useState<number>(1);
+  const [varianteSelected, setVarianteSelected] = useState<variantesType>(
+    props.variantes[0]
+  );
+  const [adding, setAdding] = useState<boolean>(false);
 
   const toastId = useRef<any>();
-  const firstRun = useRef(true);
+  const firstRun = useRef<boolean>(true);
 
   const handleOnAddToCart = () => {
     setAdding(true);
@@ -68,10 +73,12 @@ const Product = (props) => {
     <>
       <Head>
         <title>
-          {props.name} | {i18next.t("generic.title-shop")}
+          <>
+            {props.name} | {i18next.t("generic.title-shop")}
+          </>
         </title>
       </Head>
-      <div className="container lg:max-w-screen-lg mx-auto py-12 px-6">
+      <div className="container lg:max-w-screen-lg mx-auto md:py-12 px-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-12">
           {/* Product's image */}
           <ProductImage images={props.images} />
@@ -83,11 +90,20 @@ const Product = (props) => {
             <Rating rate={props?.rating?.rate} count={props?.rating?.count} />
 
             {/* Price */}
-            <Price price={props.price} />
+            <Price price={props.price} fakePrice={props.fakePrice} />
 
             <div className="mt-4 border-t pt-4">
-              {/* Quantity */}
-              <Quantity setQty={setQty} qty={qty} />
+              <div className="flex space-y-4 flex-col">
+                {/* Quantity */}
+                <Quantity setQty={setQty} qty={qty} />
+
+                {/* Variante selector */}
+                <Variantes
+                  setVarianteSelected={setVarianteSelected}
+                  varianteSelected={varianteSelected}
+                  product={props}
+                />
+              </div>
 
               {/* Add to cart button */}
               <AddToCartButton
@@ -95,6 +111,16 @@ const Product = (props) => {
                 qty={qty}
                 adding={adding}
               />
+            </div>
+            <div className="flex flex-col justify-center mt-2">
+              <div className="title flex justify-center items-center">
+                <i className="bg-black w-12 md:w-full border-t"></i>
+                <span className="w-full mx-2 text-center">
+                  {i18next.t("cart.payment-secure").toString()}
+                </span>
+                <i className="bg-black w-12 md:w-full border-t"></i>
+              </div>
+              <img src="/cards.png" alt="Card accepted" />
             </div>
           </div>
         </div>

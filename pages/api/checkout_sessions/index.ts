@@ -4,6 +4,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, null);
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
+    //Notif here une perssonne va jusqu'au paiment
     try {
       const session = await stripe.checkout.sessions.create({
         mode: "payment",

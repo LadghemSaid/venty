@@ -1,6 +1,6 @@
-export const TITLE_SHOP = "France-Moustique";
-export const URL_PORTFOLIO = "https://France-Moustique.fr";
-export const URL_LOGO = "/leaf.svg";
+export const TITLE_SHOP = "Venty Shop";
+export const URL_PORTFOLIO = "https://venty-store.fr";
+export const URL_LOGO = "/logo2.jpg";
 export const SHOW_TESTIMONIALS = false;
 export const SHOW_NEWSLETTER_FORM = false;
 export const SHOW_ARTICLE = true;

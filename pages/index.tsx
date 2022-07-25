@@ -44,6 +44,7 @@ export default function Home() {
             itemsLeft={producstList[0].itemsLeft}
             fakePrice={producstList[0].fakePrice}
             currency={producstList[0].currency}
+            variantes={producstList[0].variantes}
           />
         </div>
       )}

@@ -32,7 +32,7 @@ export default function HeadBangs() {
           },
           // when window width is >= 640px
           640: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 40,
           },
         }}
