@@ -1,5 +1,7 @@
 import { MailIcon, PhoneIcon, TruckIcon } from "@heroicons/react/solid";
+import { SHOW_NEWSLETTER_FORM } from "contants";
 import React from "react";
+import NewsLetter from "./NewsLetter";
 
 export default function Contact() {
   return (
@@ -48,12 +50,7 @@ export default function Contact() {
         </li>
       </ul>
 
-      <h1 className="text-xl font-light text-center my-5">
-        INSCRIPTION NEWSLETTER
-      </h1>
-      <span className="text-center">
-        Inscrivez-vous à notre newsletter et recevez votre offre de bienvenue !
-      </span>
+      {SHOW_NEWSLETTER_FORM && <NewsLetter />}
     </div>
   );
 }

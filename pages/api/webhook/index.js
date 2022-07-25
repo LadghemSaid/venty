@@ -1,5 +1,5 @@
-import Stripe from 'stripe';
-import { buffer } from 'micro';
+import Stripe from "stripe";
+import { buffer } from "micro";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -10,13 +10,13 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     let event;
 
     try {
       // 1. Retrieve the event by verifying the signature using the raw body and secret
       const rawBody = await buffer(req);
-      const signature = req.headers['stripe-signature'];
+      const signature = req.headers["stripe-signature"];
 
       event = stripe.webhooks.constructEvent(
         rawBody.toString(),
@@ -30,10 +30,11 @@ export default async function handler(req, res) {
     }
 
     // Successfully constructed event
-    console.log('✅ Success:', event.id);
+    console.log("✅ Success:", event.id);
+    console.log("✅ event:", JSON.stringify(event));
 
     // 2. Handle event type (add business logic here)
-    if (event.type === 'checkout.session.completed') {
+    if (event.type === "checkout.session.completed") {
       console.log(`💰  Payment received!`);
     } else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
@@ -42,7 +43,7 @@ export default async function handler(req, res) {
     // 3. Return a response to acknowledge receipt of the event.
     res.json({ received: true });
   } else {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed');
+    res.setHeader("Allow", "POST");
+    res.status(405).end("Method Not Allowed");
   }
 }

@@ -16,10 +16,11 @@ import { SHOW_ARTICLE, SHOW_TESTIMONIALS } from "contants";
 import FakeCounter from "@/components/FakeCounter";
 import Rating from "@/components/Rating";
 import Article from "@/components/Article";
+import { redirectToCheckout } from "@/lib/get-stripe";
 
 const Product = (props) => {
   const router = useRouter();
-  const { cartCount, addItem } = useShoppingCart();
+  const { cartDetails, cartCount, addItem } = useShoppingCart();
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
 
@@ -34,6 +35,7 @@ const Product = (props) => {
       }...`
     );
     addItem(props, qty);
+    redirectToCheckout(cartDetails);
   };
 
   useEffect(() => {

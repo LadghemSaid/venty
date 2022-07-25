@@ -8,7 +8,7 @@ const Footer = () => (
     <Services />
     <Contact />
 
-    <footer className="container bg-black xl:max-w-screen-xl mx-auto p-6 mt-8 text-center">
+    <footer className="bg-black mt-8 p-6 text-center w-full">
       <p>
         <a
           href={URL_PORTFOLIO}
@@ -18,7 +18,7 @@ const Footer = () => (
         >
           <>
             {i18next.t("footer.tagline")}
-            <HeartIcon className="inline-block w-4 h-4 -mt-1 text-red-600 animate-pulse" />
+            <HeartIcon className="inline-block w-4 h-4 -mt-1 text-red-600 animate-pulse mx-2" />
             {i18next.t("footer.sub-tagline")}
           </>
         </a>

@@ -5,7 +5,7 @@ import Head from "next/head";
 import { useShoppingCart } from "@/hooks/use-shopping-cart";
 import axios from "axios";
 import { formatCurrency } from "@/lib/utils";
-import getStripe from "@/lib/get-stripe";
+import getStripe, { redirectToCheckout } from "@/lib/get-stripe";
 import {
   XCircleIcon,
   XIcon,
@@ -19,22 +19,6 @@ const Cart = () => {
     useShoppingCart();
   const [redirecting, setRedirecting] = useState(false);
 
-  const redirectToCheckout = async () => {
-    // Create Stripe checkout
-    const {
-      data: { id },
-    } = await axios.post("/api/checkout_sessions", {
-      items: Object.entries(cartDetails).map(([_, { id, quantity }]) => ({
-        price: id,
-        quantity,
-      })),
-    });
-
-    // Redirect to checkout
-    const stripe = await getStripe();
-    await stripe.redirectToCheckout({ sessionId: id });
-  };
-
   return (
     <>
       <Head>
@@ -44,7 +28,7 @@ const Cart = () => {
           </>
         </title>
       </Head>
-      <div className="container xl:max-w-screen-xl mx-auto py-12 px-6">
+      <div className="container  mx-auto px-6 py-12 xl:max-w-screen-xl">
         {cartCount > 0 ? (
           <>
             <h2 className="text-4xl font-semibold">
@@ -81,7 +65,7 @@ const Cart = () => {
         )}
 
         {cartCount > 0 ? (
-          <div className="mt-12">
+          <div style={{ minHeight: "60vh" }} className="flex flex-col  mt-12">
             {Object.entries(cartDetails).map(([key, product]) => (
               <div
                 key={key}
@@ -104,11 +88,18 @@ const Cart = () => {
                     <p className="font-semibold text-xl group-hover:underline">
                       {product.name}
                     </p>
+                    {/* Remove item */}
+                    <button
+                      onClick={() => removeItem(product, product.quantity)}
+                      className="md:ml-4 hover:text-rose-500"
+                    >
+                      <XCircleIcon className="w-6 h-6 flex-shrink-0 opacity-50 hover:opacity-100 transition-opacity" />
+                    </button>
                   </a>
                 </Link>
 
                 {/* Price + Actions */}
-                <div className="flex items-center  flex-col md:flex-row">
+                <div className="flex items-center  justify-end flex-row">
                   {/* Quantity */}
                   <div className="flex items-center space-x-3">
                     <button
@@ -132,19 +123,14 @@ const Cart = () => {
                     <XIcon className="w-4 h-4 text-gray-500 inline-block" />
                     {formatCurrency(product.price)}
                   </p>
-
-                  {/* Remove item */}
-                  <button
-                    onClick={() => removeItem(product, product.quantity)}
-                    className="md:ml-4 hover:text-rose-500"
-                  >
-                    <XCircleIcon className="w-6 h-6 flex-shrink-0 opacity-50 hover:opacity-100 transition-opacity" />
-                  </button>
                 </div>
               </div>
             ))}
 
-            <div className="flex flex-col items-end border-t py-4 mt-8">
+            <div
+              style={{ marginTop: "auto" }}
+              className="flex flex-col items-end border-t py-4 mt-8"
+            >
               <p className="text-xl">
                 <>{i18next.t("cart.total")} :</>
                 <span className="font-semibold">
@@ -153,7 +139,7 @@ const Cart = () => {
               </p>
 
               <button
-                onClick={redirectToCheckout}
+                onClick={() => redirectToCheckout(cartDetails)}
                 disabled={redirecting}
                 className="border rounded py-2 px-6 bg-rose-500 hover:bg-rose-600 border-rose-500 hover:border-rose-600 focus:ring-4 focus:ring-opacity-50 focus:ring-rose-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-rose-500 max-w-max mt-4"
               >

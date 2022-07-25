@@ -4,7 +4,7 @@ export default function Services() {
   if (1 === 1) {
     return (
       <div className="py-12 bg-black ">
-        <div className="container m-auto px-6 text-gray-500 md:px-12 xl:px-0">
+        <div className="container m-auto px-6 text-gray-500 md:px-12 ">
           <div className="mx-auto grid gap-6 md:w-3/4 lg:w-full lg:grid-cols-4">
             <div className="bg-white rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8">
               <div className="mb-12 space-y-4">

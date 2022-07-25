@@ -26,7 +26,7 @@ const Success = () => {
   }, [data]);
 
   return (
-    <div className="container xl:max-w-screen-xl mx-auto py-12 px-6 text-center">
+    <div className="container flex items-center min-h-screen mx-auto px-6 py-12 text-center xl:max-w-screen-xl">
       {error ? (
         <div className="p-2 rounded-md bg-rose-100 text-rose-500 max-w-md mx-auto">
           <p className="text-lg">Sorry, something went wrong!</p>
