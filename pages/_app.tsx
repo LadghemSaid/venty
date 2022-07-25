@@ -29,6 +29,8 @@ export const ProductStore = createContext({
   productList: [],
   setProductList: null,
   fakeDataIteration: 1,
+  swiperProductPhoto: null,
+  setSwiperProductPhoto: null,
 });
 
 function MyApp({ Component, pageProps }) {
@@ -37,6 +39,7 @@ function MyApp({ Component, pageProps }) {
   const [productList, setProductList] = useState(
     initializeRandomCookies(products)
   );
+  const [swiperProductPhoto, setSwiperProductPhoto] = useState(null);
   const [fakeDataIteration, setFakeDataIteration] = useState(1);
 
   const [timer, dispatchTimer] = useReducer(TimeReducer, 0);
@@ -49,7 +52,6 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   if (moment.unix(item.eventTime).isBefore(moment())) {
-    console.log("isBefore");
     let tmpEvtTime = moment()
       .add(Math.floor(Math.random() * 20) + 10, "hours")
       .add(Math.floor(Math.random() * 60) + 1, "minutes")
@@ -109,7 +111,13 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ProductStore.Provider
-        value={{ productList, setProductList, fakeDataIteration }}
+        value={{
+          productList,
+          setProductList,
+          fakeDataIteration,
+          swiperProductPhoto,
+          setSwiperProductPhoto,
+        }}
       >
         <CartProvider>
           <div className="min-h-screen flex flex-col">

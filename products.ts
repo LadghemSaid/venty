@@ -6,18 +6,20 @@ const products: ProductListType = [
     description: "",
     variantes: [
       {
-        name: "blanc",
-        id: "price_1LPSuYGYxr8yvqo4QPm64thh",
-      },
-      {
         name: "noir",
         id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
+        images: ["/products/img1.png"],
+      },
+      {
+        name: "blanc",
+        id: "price_1LPSuYGYxr8yvqo4QPm64thh",
+        images: ["/products/img2.png"],
       },
     ],
     price: 3999,
     fakePrice: 9995,
     currency: "EUR",
-    images: ["/products/img2.png", "/products/img1.png"],
+
     rating: {
       count: 85,
       rate: 4.5,
@@ -39,18 +41,20 @@ const products: ProductListType = [
     description: "",
     variantes: [
       {
-        name: "noir",
-        id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
-      },
-      {
         name: "blanc",
         id: "price_1LPSuYGYxr8yvqo4QPm64thh",
+        images: ["/products/img2.png"],
+      },
+      {
+        name: "noir",
+        id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
+        images: ["/products/img1.png"],
       },
     ],
     price: 3999,
     fakePrice: 9995,
     currency: "EUR",
-    images: ["/products/img1.png", "/products/img2.png"],
+
     rating: {
       count: 85,
       rate: 4.5,

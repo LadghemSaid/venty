@@ -81,7 +81,7 @@ const Product = (props: ProductType) => {
       <div className="container lg:max-w-screen-lg mx-auto md:py-12 px-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-12">
           {/* Product's image */}
-          <ProductImage images={props.images} />
+          <ProductImage variantes={props.variantes} />
 
           {/* Product's details */}
           <div className="flex-1 w-full md:max-w-md border border-opacity-50 rounded-md shadow-lg p-6">

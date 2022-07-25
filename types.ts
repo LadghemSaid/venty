@@ -9,6 +9,7 @@ export type reviewType = {
 export type variantesType = {
   name: string;
   id: string;
+  images: string[];
 };
 
 export interface ProductType {
@@ -20,7 +21,6 @@ export interface ProductType {
   description: string;
   price: number;
   fakePrice: number;
-  images: string[];
   variantes: variantesType[];
   rating: {
     count: number;

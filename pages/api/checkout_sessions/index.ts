@@ -37,7 +37,7 @@ export default async function handler(req, res) {
 
       res.status(200).json(session);
     } catch (err) {
-      console.log(err);
+      console.log("❌ " + err);
       res.status(500).json({ statusCode: 500, message: err.raw.message });
     }
   } else {

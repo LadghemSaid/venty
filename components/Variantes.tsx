@@ -15,7 +15,19 @@ export default ({
   varianteSelected: variantesType;
   product: ProductType;
 }) => {
-  // const ProductStoreContext = useContext(ProductStore);
+  function handleSetVariante(variante) {
+    ProductStoreContext.swiperProductPhoto.slideTo(
+      product.variantes.findIndex((it) => it.name !== variante.name) || 0
+    );
+    // console.log(
+    //   ProductStoreContext.swiperProductPhoto.slides.find((it) =>
+    //     it.dataset.find((dt) => dt.id === varianteSelected.id)
+    //   )
+    // );
+
+    setVarianteSelected(variante);
+  }
+  const ProductStoreContext = useContext(ProductStore);
 
   return (
     <div className="flex-col">
@@ -23,10 +35,16 @@ export default ({
         <>{i18next.t("products.variantes")}:</>
       </p>
       <ul className="gap-6 grid grid-cols-2">
-        {product.variantes.map((variante) => {
+        {product.variantes.map((variante, index) => {
           return (
-            <li className="w-full">
-              <button className="mt-2  w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+            <li key={"variante-" + index} className="w-full">
+              <button
+                onClick={() => handleSetVariante(variante)}
+                style={{
+                  borderColor: varianteSelected.id === variante.id && "black",
+                }}
+                className="mt-2  w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+              >
                 {capitalize(variante.name)}
               </button>
             </li>
