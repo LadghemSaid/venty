@@ -11,7 +11,6 @@ export default function HeadBangs() {
     //Hide if constant or empty array in languages
     return <></>;
   }
-
   return (
     <div className="h-8 bg-black  ">
       <Swiper
@@ -23,7 +22,7 @@ export default function HeadBangs() {
         breakpoints={{
           // when window width is >= 320px
           320: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 20,
           },
           // when window width is >= 480px
@@ -45,7 +44,10 @@ export default function HeadBangs() {
               key={"swiper-bandeau-" + index}
             >
               <span className="w-5 h-5 mr-2">
-                {i.icon && IconsOutline[i.icon]()}
+                {i.icon &&
+                  IconsOutline[i.icon + "Icon"] &&
+                  IconsOutline[i.icon + "Icon"]()}
+                {i.iconSvg && <img src={i.iconSvg} />}
               </span>
               {i.text && <p>{i.text}</p>}
             </SwiperSlide>
