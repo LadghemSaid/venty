@@ -6,14 +6,14 @@ const products: ProductListType = [
     description: "",
     variantes: [
       {
-        name: "noir",
-        id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
-        images: ["/products/img1.png"],
-      },
-      {
         name: "blanc",
         id: "price_1LPSuYGYxr8yvqo4QPm64thh",
         images: ["/products/img2.png"],
+      },
+      {
+        name: "noir",
+        id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
+        images: ["/products/img1.png"],
       },
     ],
     price: 3999,

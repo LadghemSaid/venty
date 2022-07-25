@@ -16,6 +16,7 @@ export default function ProductImage({ variantes = [] }) {
       })
     );
   }, []);
+  console.log(imageList);
 
   const [firstSwiper, setFirstSwiper] = useState(null);
   const ProductStoreContext = useContext(ProductStore);
@@ -26,8 +27,8 @@ export default function ProductImage({ variantes = [] }) {
         modules={[Virtual, Pagination, Navigation]}
         zoom
         navigation
+        initialSlide={0}
         pagination={{ clickable: true }}
-        loop
         spaceBetween={50}
         slidesPerView={1}
         onSwiper={setFirstSwiper}

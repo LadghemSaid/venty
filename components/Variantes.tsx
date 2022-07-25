@@ -17,7 +17,7 @@ export default ({
 }) => {
   function handleSetVariante(variante) {
     ProductStoreContext.swiperProductPhoto.slideTo(
-      product.variantes.findIndex((it) => it.name !== variante.name) || 0
+      product.variantes.findIndex((it) => it.name === variante.name) || 0
     );
     // console.log(
     //   ProductStoreContext.swiperProductPhoto.slides.find((it) =>
