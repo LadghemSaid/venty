@@ -9,7 +9,7 @@ import i18next from "i18next";
 import FR from "locales/FR.json";
 import EN from "locales/EN.json";
 import { useEffect, useReducer, useState, createContext } from "react";
-import { ItemsLeftReducer, TimeReducer } from "@/hooks/use-local-timer-reducer";
+import { TimeReducer } from "@/hooks/use-local-timer-reducer";
 import products from "products";
 import Cookies from "js-cookie";
 import { initializeRandomCookies } from "@/lib/utils";

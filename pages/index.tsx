@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/index";
 
 import products from "products";
@@ -6,7 +6,6 @@ import { initializeRandomCookies } from "@/lib/utils";
 import moment from "moment";
 import i18next from "i18next";
 import { TimeReducer } from "@/hooks/use-local-timer-reducer";
-import Cookies from "js-cookie";
 import { SHOW_PRODUCT_LIST_AT_HOMEPAGE } from "contants";
 import Product from "./products/[id]";
 export default function Home() {

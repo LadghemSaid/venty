@@ -10,7 +10,7 @@ export default function Contact() {
 
       <ul className="mt-5 text-center">
         <li className="">
-          <a href="/pages/suivi-de-commande">
+          <a href="/suivi-de-commande">
             <b>
               <TruckIcon className="w-5 h-5 inline" /> Suivre ma commande
             </b>
