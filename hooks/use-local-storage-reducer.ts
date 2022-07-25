@@ -1,7 +1,7 @@
-import { useEffect, useReducer, useRef } from 'react';
-import { isClient } from '@/lib/utils';
+import { useEffect, useReducer, useRef } from "react";
+import { isClient } from "@/lib/utils";
 
-const useLocalStorageReducer = (key = '', reducer, initialValue = null) => {
+const useLocalStorageReducer = (key = "", reducer, initialValue = null) => {
   const [state, dispatch] = useReducer(reducer, initialValue, () => {
     try {
       if (isClient) {

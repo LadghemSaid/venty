@@ -7,11 +7,11 @@ export type reviewType = {
   photos: string[];
 };
 
-export type ProductType = {
+export interface ProductType {
   id: string;
   currency: string;
-  eventTime: number;
-  itemsLeft: number;
+  eventTime?: number;
+  itemsLeft?: number;
   name: string;
   description: string;
   price: number;
@@ -22,20 +22,21 @@ export type ProductType = {
     rate: number;
     reviews: reviewType[];
   };
-};
+}
 
 export type ProductListType = ProductType[];
 
-export type cartValues = {
-  cartDetails?: {
-    [key: string]: {
-      id: string;
-      quantity: number;
-      price: number;
-      images: string[];
-      name: string;
-    };
+export type CartDetails = {
+  [key: string]: {
+    id: string;
+    quantity: number;
+    price: number;
+    images: string[];
+    name: string;
   };
+};
+export type cartValues = {
+  cartDetails?: CartDetails;
   cartCount?: number;
   totalPrice?: number;
 };

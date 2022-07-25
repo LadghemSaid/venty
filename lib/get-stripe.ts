@@ -1,5 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import { CartDetails } from "types";
 
 let stripePromise = null;
 
@@ -9,7 +10,7 @@ const getStripe = () => {
   }
   return stripePromise;
 };
-export const redirectToCheckout = async (cartDetails) => {
+export const redirectToCheckout = async (cartDetails: CartDetails) => {
   // Create Stripe checkout
   const {
     data: { id },
