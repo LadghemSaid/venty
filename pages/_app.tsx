@@ -17,6 +17,7 @@ import { FakeDataMachine } from "machines/FakeDataMachine";
 import { useMachine } from "@xstate/react";
 import moment from "moment";
 import { ProductListType } from "types";
+import Swiper from "swiper";
 
 i18next.init({
   lng: "fr", // if you're using a language detector, do not define the lng option
@@ -30,7 +31,7 @@ export const ProductStore = createContext<{
   productList: ProductListType;
   setProductList: Function;
   fakeDataIteration: number;
-  swiperProductPhoto: Object;
+  swiperProductPhoto: Swiper | null;
   setSwiperProductPhoto: Function;
 }>({
   productList: [],
