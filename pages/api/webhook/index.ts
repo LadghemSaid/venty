@@ -1,6 +1,6 @@
+import { generate_order } from "@/lib/order-functions";
 import Stripe from "stripe";
 import { buffer } from "micro";
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, null);
 
 export const config = {
@@ -36,6 +36,10 @@ export default async function handler(req, res) {
     // 2. Handle event type (add business logic here)
     if (event.type === "checkout.session.completed") {
       console.log(`💰  Payment received!`);
+      //Write order to airtable
+      generate_order(event);
+
+      //Send notificaiont via gotify
     } else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
     }

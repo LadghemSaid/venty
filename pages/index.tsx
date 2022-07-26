@@ -12,7 +12,6 @@ export default function Home() {
   const [disabled, setDisabled] = useState(false);
   const [producstList, setProductList] = useState(products);
   moment.locale(i18next.language);
-
   useEffect(() => {
     setProductList(initializeRandomCookies(products));
   }, []);

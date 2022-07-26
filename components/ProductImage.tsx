@@ -9,16 +9,18 @@ import InnerImageZoom from "react-inner-image-zoom";
 import { ProductStore } from "pages/_app";
 export default function ProductImage({ variantes = [] }) {
   const [imageList, setimageList] = useState<string[]>([]);
-  useEffect(() => {
-    setimageList(
-      variantes.map((variante) => {
-        return variante.images || [];
-      })
-    );
-  }, []);
   const [firstSwiper, setFirstSwiper] = useState(null);
   const ProductStoreContext = useContext(ProductStore);
-  ProductStoreContext.setSwiperProductPhoto(firstSwiper);
+  useEffect(() => {
+    ProductStoreContext.setSwiperProductPhoto(firstSwiper);
+    if (variantes.length) {
+      setimageList(
+        variantes.map((variante) => {
+          return variante?.images?.join(",") || "";
+        })
+      );
+    }
+  }, []);
   return (
     <div className="relative w-72 h-72 sm:w-96 sm:h-96">
       <Swiper
