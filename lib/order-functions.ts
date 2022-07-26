@@ -15,7 +15,7 @@ export function generate_order(event) {
 
   const items = JSON.parse(data.metadata.items);
   const realItem = items.map((it) => {
-    const itFound = products.find((pr) => pr.id === it.price);
+    const itFound = products.find((pr) => pr.id_price === it.price);
     return (
       itFound.name +
       `(${it.quantity}) (${itFound.variantes?.[0]?.name || "Default"})`

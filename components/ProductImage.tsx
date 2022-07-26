@@ -20,7 +20,7 @@ export default function ProductImage({ variantes = [] }) {
         })
       );
     }
-  }, []);
+  }, [firstSwiper]);
   return (
     <div className="relative w-72 h-72 sm:w-96 sm:h-96">
       <Swiper

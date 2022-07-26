@@ -51,16 +51,16 @@ function MyApp({ Component, pageProps }) {
     }, 2000);
   }, []);
 
-  if (moment.unix(item.eventTime).isBefore(moment())) {
+  if (moment.unix(item?.eventTime).isBefore(moment())) {
     let tmpEvtTime = moment()
       .add(Math.floor(Math.random() * 20) + 10, "hours")
       .add(Math.floor(Math.random() * 60) + 1, "minutes")
       .add(Math.floor(Math.random() * 60) + 1, "seconds")
       .unix();
-    Cookies.set("eventTime-" + item.id, tmpEvtTime);
+    Cookies.set("eventTime-" + item.id_price, tmpEvtTime);
     setProductList(
       productList.map((i) => {
-        if (i.id === item.id) {
+        if (i.id_price === item.id_price) {
           i.eventTime = tmpEvtTime;
         }
         return i;
@@ -68,11 +68,11 @@ function MyApp({ Component, pageProps }) {
     );
   }
   if (timer > 7 * fakeDataIteration) {
-    if (item.itemsLeft > 2) {
-      Cookies.set("itemsLeft-" + item.id, item.itemsLeft - 1);
+    if (item?.itemsLeft > 2) {
+      Cookies.set("itemsLeft-" + item.id_price, item?.itemsLeft - 1);
       setProductList(
         productList.map((i) => {
-          if (i.id === item.id) {
+          if (i.id_price === item.id_price) {
             i.itemsLeft--;
           }
           return i;
@@ -83,8 +83,8 @@ function MyApp({ Component, pageProps }) {
       //Reinitialise le compteur à 12... pas assez realiste autant laisser a 2 left
       // setProductList(
       //   productList.map((i) => {
-      //     if (i.id === item.id) {
-      //       i.itemsLeft = 12;
+      //     if (i.id_price === item.id_price) {
+      //       i?.itemsLeft = 12;
       //     }
       //     return i;
       //   })

@@ -15,13 +15,13 @@ export default function FakeCounter({ product }) {
   moment.locale(i18next.language);
   const ProductStoreContext = useContext(ProductStore);
   const item = ProductStoreContext.productList.find(
-    ({ id }) => id === product.id
+    ({ id }) => id === product.id_price
   );
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(item.eventTime));
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(item?.eventTime));
 
   useEffect(() => {
     setTimeout(() => {
-      setTimeLeft(calculateTimeLeft(item.eventTime));
+      setTimeLeft(calculateTimeLeft(item?.eventTime));
     }, 1000);
   });
 
@@ -42,7 +42,7 @@ export default function FakeCounter({ product }) {
         {i18next.t("generic.left-only").toString()}
         <span className="ml-1 font-semibold mr-1">
           {i18next
-            .t("generic.items-in-stock", { itemsCount: item.itemsLeft })
+            .t("generic.items-in-stock", { itemsCount: item?.itemsLeft })
             .toString()}
         </span>
         {i18next.t("products.in-stock").toLowerCase()}

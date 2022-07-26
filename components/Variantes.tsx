@@ -14,7 +14,7 @@ export default ({
   product: ProductType;
 }) => {
   function handleSetVariante(variante) {
-    ProductStoreContext.swiperProductPhoto.slideTo(
+    ProductStoreContext?.swiperProductPhoto?.slideTo(
       product.variantes.findIndex((it) => it.name === variante.name) || 0
     );
     setVarianteSelected(variante);
@@ -27,21 +27,24 @@ export default ({
         <>{i18next.t("products.variantes")}:</>
       </p>
       <ul className="gap-6 grid grid-cols-2">
-        {product.variantes.map((variante, index) => {
-          return (
-            <li key={"variante-" + index} className="w-full">
-              <button
-                onClick={() => handleSetVariante(variante)}
-                style={{
-                  borderColor: varianteSelected.id === variante.id && "black",
-                }}
-                className="mt-2  w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-              >
-                {capitalize(variante.name)}
-              </button>
-            </li>
-          );
-        })}
+        {product.variantes &&
+          product.variantes.map((variante, index) => {
+            return (
+              <li key={"variante-" + index} className="w-full">
+                <button
+                  onClick={() => handleSetVariante(variante)}
+                  style={{
+                    borderColor:
+                      varianteSelected.id_price === variante.id_price &&
+                      "black",
+                  }}
+                  className="mt-2  w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                >
+                  {capitalize(variante.name)}
+                </button>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );

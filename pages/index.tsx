@@ -21,7 +21,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {producstList.map((product) => (
             <ProductCard
-              key={product.id}
+              key={product.id_price}
               disabled={disabled}
               onClickAdd={() => setDisabled(true)}
               onAddEnded={() => setDisabled(false)}
@@ -34,14 +34,14 @@ export default function Home() {
         <div>
           <Product
             name={producstList[0].name}
-            id={producstList[0].id}
+            id_price={producstList[0].id_price}
             rating={producstList[0].rating}
             price={producstList[0].price}
             description={producstList[0].description}
-            eventTime={producstList[0].eventTime}
-            itemsLeft={producstList[0].itemsLeft}
+            eventTime={producstList[0]?.eventTime}
+            itemsLeft={producstList[0]?.itemsLeft}
             fakePrice={producstList[0].fakePrice}
-            currency={producstList[0].currency}
+            currency={producstList[0]?.currency}
             variantes={producstList[0].variantes}
           />
         </div>

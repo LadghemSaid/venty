@@ -75,7 +75,9 @@ const Cart = () => {
               >
                 {/* Image + Name */}
                 <Link
-                  href={MULTI_PRODUCT_SHOP ? `/products/${product.id}` : `/`}
+                  href={
+                    MULTI_PRODUCT_SHOP ? `/products/${product.id_price}` : `/`
+                  }
                 >
                   <a className="flex items-center space-x-4 group">
                     <div className="relative w-20 h-20 group-hover:scale-110 transition-transform">
@@ -142,7 +144,7 @@ const Cart = () => {
               </p>
 
               <button
-                onClick={() => redirectToCheckout(cartDetails)}
+                onClick={() => redirectToCheckout(cartDetails, clearCart)}
                 disabled={redirecting}
                 className="border rounded py-2 px-6 bg-rose-500 hover:bg-rose-600 border-rose-500 hover:border-rose-600 focus:ring-4 focus:ring-opacity-50 focus:ring-rose-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-rose-500 max-w-max mt-4"
               >

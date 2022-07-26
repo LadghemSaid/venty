@@ -1,5 +1,5 @@
 import products from "products";
-import React, { useContext, useReducer, useMemo } from "react";
+import React, { useContext, useReducer, useMemo, useCallback } from "react";
 import { CartDetailProduct, cartValues } from "types";
 import useLocalStorageReducer from "./use-local-storage-reducer";
 
@@ -16,7 +16,7 @@ const addItem = (
   quantity = 0
 ): cartValues => {
   if (quantity <= 0 || !product) return state;
-  let entry = state?.cartDetails?.[product.id];
+  let entry = state?.cartDetails?.[product.id_price];
 
   if (entry && entry.variante.name === product.variante.name) {
     // Update item
@@ -24,8 +24,10 @@ const addItem = (
   } else {
     // Add item
     let varianteFound;
-    if (product.variante.id) {
-      varianteFound = products.find((it) => it.id === product.variante.id);
+    if (product.variante.id_price) {
+      varianteFound = products.find(
+        (it) => it.id_price === product.variante.id_price
+      );
       if (varianteFound) {
         product = { ...varianteFound, variante: product.variante };
       }
@@ -41,7 +43,7 @@ const addItem = (
     ...state,
     cartDetails: {
       ...state.cartDetails,
-      [product.id]: entry,
+      [product.id_price]: entry,
     },
     cartCount: Math.max(0, state.cartCount + quantity),
     totalPrice: Math.max(state.totalPrice + product.price * quantity),
@@ -54,7 +56,7 @@ const removeItem = (
   quantity = 0
 ): cartValues => {
   if (quantity <= 0 || !product) return state;
-  let entry = state?.cartDetails?.[product.id];
+  let entry = state?.cartDetails?.[product.id_price];
 
   if (entry) {
     // Remove item
@@ -62,7 +64,7 @@ const removeItem = (
       quantity >= entry.quantity &&
       entry.variante.name === product.variante.name
     ) {
-      const { [product.id]: id, ...details } = state.cartDetails;
+      const { [product.id_price]: id, ...details } = state.cartDetails;
       return {
         ...state,
         cartDetails: details,
@@ -79,7 +81,7 @@ const removeItem = (
         ...state,
         cartDetails: {
           ...state.cartDetails,
-          [product.id]: {
+          [product.id_price]: {
             ...entry,
             quantity: entry.quantity - quantity,
           },

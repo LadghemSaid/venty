@@ -8,12 +8,12 @@ export type reviewType = {
 };
 export type varianteType = {
   name: string;
-  id: string;
+  id_price: string;
   images: string[];
 };
 
 export interface ProductType {
-  id: string;
+  id_price: string;
   currency: string;
   eventTime?: number;
   itemsLeft?: number;
@@ -35,7 +35,7 @@ export type CartDetails = {
   [key: string]: CartDetailProduct;
 };
 export type CartDetailProduct = {
-  id: string;
+  id_price: string;
   quantity?: number;
   price: number;
   variante: varianteType;

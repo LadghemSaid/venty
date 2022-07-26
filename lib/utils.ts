@@ -84,8 +84,8 @@ export function initializeRandomCookies(
 ): ProductListType {
   if (typeof window !== "undefined") {
     return products.map((product) => {
-      let tmpItemsLeft = Cookies.get("itemsLeft-" + product.id);
-      let tmpEvtTime = Cookies.get("eventTime-" + product.id);
+      let tmpItemsLeft = Cookies.get("itemsLeft-" + product.id_price);
+      let tmpEvtTime = Cookies.get("eventTime-" + product.id_price);
       let newDate = moment()
         .add(Math.floor(Math.random() * 20) + 10, "hours")
         .add(Math.floor(Math.random() * 60) + 1, "minutes")
@@ -94,15 +94,15 @@ export function initializeRandomCookies(
 
       if (!tmpEvtTime) {
         tmpEvtTime = newDate;
-        Cookies.set("eventTime-" + product.id, tmpEvtTime);
+        Cookies.set("eventTime-" + product.id_price, tmpEvtTime);
       }
       if (moment.unix(tmpEvtTime).isBefore(moment())) {
         tmpEvtTime = newDate;
-        Cookies.set("eventTime-" + product.id, tmpEvtTime);
+        Cookies.set("eventTime-" + product.id_price, tmpEvtTime);
       }
       if (!tmpItemsLeft) {
         tmpItemsLeft = Math.floor(Math.random() * 19) + 2;
-        Cookies.set("itemsLeft-" + product.id, tmpItemsLeft);
+        Cookies.set("itemsLeft-" + product.id_price, tmpItemsLeft);
       }
 
       return { ...product, eventTime: tmpEvtTime, itemsLeft: tmpItemsLeft };

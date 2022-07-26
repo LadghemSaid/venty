@@ -1,18 +1,18 @@
 import { ProductListType } from "./types";
 const products: ProductListType = [
   {
-    id: "price_1LPSuYGYxr8yvqo4QPm64thh",
+    id_price: "price_1LPSuYGYxr8yvqo4QPm64thh",
     name: "VentyPro™",
     description: "",
     variantes: [
       {
         name: "blanc",
-        id: "price_1LPSuYGYxr8yvqo4QPm64thh",
+        id_price: "price_1LPSuYGYxr8yvqo4QPm64thh",
         images: ["/products/img2.png"],
       },
       {
         name: "noir",
-        id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
+        id_price: "price_1LPUjUGYxr8yvqo4fgSirBBl",
         images: ["/products/img1.png"],
       },
     ],
@@ -36,18 +36,18 @@ const products: ProductListType = [
     },
   },
   {
-    id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
+    id_price: "price_1LPUjUGYxr8yvqo4fgSirBBl",
     name: "VentyPro™",
     description: "",
     variantes: [
       {
         name: "blanc",
-        id: "price_1LPSuYGYxr8yvqo4QPm64thh",
+        id_price: "price_1LPSuYGYxr8yvqo4QPm64thh",
         images: ["/products/img2.png"],
       },
       {
         name: "noir",
-        id: "price_1LPUjUGYxr8yvqo4fgSirBBl",
+        id_price: "price_1LPUjUGYxr8yvqo4fgSirBBl",
         images: ["/products/img1.png"],
       },
     ],
