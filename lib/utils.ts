@@ -151,12 +151,13 @@ declare global {
 }
 // log the pageview with their URL
 export const GApageview = (url) => {
-  window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-    page_path: url,
-  });
+  window &&
+    window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+      page_path: url,
+    });
 };
 
 // log specific events happening.
 export const GAevent = ({ action, params }) => {
-  window.gtag("event", action, params);
+  window && window.gtag("event", action, params);
 };
