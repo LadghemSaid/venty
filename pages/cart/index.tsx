@@ -13,6 +13,7 @@ import {
   PlusSmIcon,
 } from "@heroicons/react/outline";
 import i18next from "i18next";
+import { MULTI_PRODUCT_SHOP } from "contants";
 
 const Cart = () => {
   const { cartDetails, totalPrice, cartCount, addItem, removeItem, clearCart } =
@@ -73,7 +74,9 @@ const Cart = () => {
                 flex-col md:flex-row"
               >
                 {/* Image + Name */}
-                <Link href={`/products/${product.id}`}>
+                <Link
+                  href={MULTI_PRODUCT_SHOP ? `/products/${product.id}` : `/`}
+                >
                   <a className="flex items-center space-x-4 group">
                     <div className="relative w-20 h-20 group-hover:scale-110 transition-transform">
                       {product?.variante?.images?.[0] && (

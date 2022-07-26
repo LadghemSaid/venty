@@ -6,7 +6,7 @@ import { initializeRandomCookies } from "@/lib/utils";
 import moment from "moment";
 import i18next from "i18next";
 import { TimeReducer } from "@/hooks/use-local-timer-reducer";
-import { SHOW_PRODUCT_LIST_AT_HOMEPAGE } from "contants";
+import { MULTI_PRODUCT_SHOP } from "contants";
 import Product from "./products/[id]";
 export default function Home() {
   const [disabled, setDisabled] = useState(false);
@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
   return (
     <div className="container xl:max-w-screen-xl min-h-screen mx-auto  px-6">
-      {SHOW_PRODUCT_LIST_AT_HOMEPAGE && (
+      {MULTI_PRODUCT_SHOP && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {producstList.map((product) => (
             <ProductCard
@@ -31,7 +31,7 @@ export default function Home() {
           ))}
         </div>
       )}
-      {!SHOW_PRODUCT_LIST_AT_HOMEPAGE && (
+      {!MULTI_PRODUCT_SHOP && (
         <div>
           <Product
             name={producstList[0].name}

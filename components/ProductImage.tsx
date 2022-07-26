@@ -12,7 +12,7 @@ export default function ProductImage({ variantes = [] }) {
   useEffect(() => {
     setimageList(
       variantes.map((variante) => {
-        return variante.images;
+        return variante.images || [];
       })
     );
   }, []);

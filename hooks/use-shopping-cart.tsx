@@ -4,7 +4,6 @@ import { CartDetailProduct, cartValues } from "types";
 import useLocalStorageReducer from "./use-local-storage-reducer";
 
 // Reducers
-
 const initialCartValues: cartValues = {
   cartDetails: {},
   cartCount: 0,
@@ -55,13 +54,7 @@ const removeItem = (
   quantity = 0
 ): cartValues => {
   if (quantity <= 0 || !product) return state;
-
-  let entry;
-  if (product.variante.id) {
-    entry = state?.cartDetails?.[product.variante.id];
-  } else {
-    entry = state?.cartDetails?.[product.id];
-  }
+  let entry = state?.cartDetails?.[product.id];
 
   if (entry) {
     // Remove item
@@ -125,7 +118,7 @@ const cartReducer = (
 };
 
 // Context + Provider
-const CartContext = React.createContext({});
+export const CartContext = React.createContext({});
 
 export const CartProvider = ({ currency = "EUR", children = null }) => {
   const [cart, dispatch]: any = useLocalStorageReducer(

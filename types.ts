@@ -36,10 +36,9 @@ export type CartDetails = {
 };
 export type CartDetailProduct = {
   id: string;
-  quantity: number;
+  quantity?: number;
   price: number;
   variante: varianteType;
-  images: string[];
   name: string;
 };
 export type cartValues = {

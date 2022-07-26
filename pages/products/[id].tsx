@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
-import { useShoppingCart } from "@/hooks/use-shopping-cart";
+import { CartContext, useShoppingCart } from "@/hooks/use-shopping-cart";
 import Head from "next/head";
 
 import products from "products";
@@ -17,7 +17,7 @@ import FakeCounter from "@/components/FakeCounter";
 import Rating from "@/components/Rating";
 import Article from "@/components/Article";
 import { redirectToCheckout } from "@/lib/get-stripe";
-import { CartDetailProduct, ProductType, varianteType } from "types";
+import { ProductType, varianteType } from "types";
 import Variantes from "@/components/Variantes";
 
 const Product = (props: ProductType) => {
@@ -28,6 +28,7 @@ const Product = (props: ProductType) => {
     props.variantes[0]
   );
   const [adding, setAdding] = useState<boolean>(false);
+  const [goToCheckout, setgoToCheckout] = useState<boolean>(false);
 
   const toastId = useRef<any>();
   const firstRun = useRef<boolean>(true);
@@ -40,11 +41,22 @@ const Product = (props: ProductType) => {
       }...`
     );
     addItem(
-      { ...props, variante: varianteSelected } as unknown as CartDetailProduct,
+      {
+        id: props.id,
+        price: props.price,
+        variante: varianteSelected,
+        name: props.name,
+      },
       qty
     );
-    redirectToCheckout(cartDetails);
+    setgoToCheckout(true);
   };
+
+  useEffect(() => {
+    if (goToCheckout) {
+      redirectToCheckout(cartDetails);
+    }
+  }, [goToCheckout]);
 
   useEffect(() => {
     if (firstRun.current) {
