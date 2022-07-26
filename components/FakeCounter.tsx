@@ -15,7 +15,7 @@ export default function FakeCounter({ product }) {
   moment.locale(i18next.language);
   const ProductStoreContext = useContext(ProductStore);
   const item = ProductStoreContext.productList.find(
-    ({ id }) => id === product.id_price
+    ({ id_price }) => id_price === product.id_price
   );
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(item?.eventTime));
 
