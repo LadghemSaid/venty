@@ -115,12 +115,12 @@ export function capitalize(s) {
   return s[0].toUpperCase() + s.slice(1);
 }
 
-export async function nofify(title, message, priority = 5) {
+export async function notify(title, message, priority = 5) {
   await axios({
     method: "post",
     url:
-      process.env.NEXT_WEBHOOK_MICROSERVICE_URL +
-      process.env.NEXT_WEBHOOK_MICROSERVICE_TOKEN,
+      process.env.WEBHOOK_MICROSERVICE_URL +
+      process.env.WEBHOOK_MICROSERVICE_TOKEN,
     headers: {
       "Content-Type": "application/json",
     },
