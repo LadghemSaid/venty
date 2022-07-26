@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Virtual, Pagination, Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css/bundle";

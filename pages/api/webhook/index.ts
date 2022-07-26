@@ -1,6 +1,7 @@
 import { generate_order } from "@/lib/order-functions";
 import Stripe from "stripe";
 import { buffer } from "micro";
+import { nofify } from "@/lib/utils";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, null);
 
 export const config = {
@@ -39,7 +40,8 @@ export default async function handler(req, res) {
       //Write order to airtable
       generate_order(event);
 
-      //Send notificaiont via gotify
+      //Send notification via gotify
+      nofify("Venty", "Nouvelle commande")
     } else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
     }

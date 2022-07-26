@@ -114,3 +114,32 @@ export function initializeRandomCookies(
 export function capitalize(s) {
   return s[0].toUpperCase() + s.slice(1);
 }
+
+export async function nofify(title, message, priority = 5) {
+  await axios({
+    method: "post",
+    url:
+      process.env.NEXT_WEBHOOK_MICROSERVICE_URL +
+      process.env.NEXT_WEBHOOK_MICROSERVICE_TOKEN,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
+      title: title,
+      message: message,
+      priority: priority,
+      extras: {
+        "android::action": {
+          onReceive: {
+            intentUrl: `https://airtable.com/app1dpZgQXRlK6WCU/tbl8W57F0RicQlUha/viwzBt8bHI44FhFlK?blocks=hide`,
+          },
+        },
+        "client::notification": {
+          click: {
+            url: `https://airtable.com/app1dpZgQXRlK6WCU/tbl8W57F0RicQlUha/viwzBt8bHI44FhFlK?blocks=hide`,
+          },
+        },
+      },
+    }),
+  });
+}

@@ -48,6 +48,8 @@ npm run start
 
 [MIT](https://github.com/AlterClassIO/ecommerce-nextjs-stripe-checkout/blob/master/LICENSE)
 
+https://airtable.com/app1dpZgQXRlK6WCU/tbl8W57F0RicQlUha/viwzBt8bHI44FhFlK?blocks=hide
+
 ## Launch Stripe local server to test webhook workflow and checkout processs
 
 ./stripe.exe login
