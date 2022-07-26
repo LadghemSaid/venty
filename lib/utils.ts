@@ -151,7 +151,7 @@ declare global {
 }
 // log the pageview with their URL
 export const GApageview = (url) => {
-  window &&
+  typeof window !== "undefined" &&
     window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
       page_path: url,
     });
@@ -159,5 +159,5 @@ export const GApageview = (url) => {
 
 // log specific events happening.
 export const GAevent = ({ action, params }) => {
-  window && window.gtag("event", action, params);
+  typeof window !== "undefined" && window.gtag("event", action, params);
 };
