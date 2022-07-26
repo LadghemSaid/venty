@@ -36,7 +36,6 @@ export default function Home() {
           <Product
             name={producstList[0].name}
             id={producstList[0].id}
-            images={producstList[0].images}
             rating={producstList[0].rating}
             price={producstList[0].price}
             description={producstList[0].description}

@@ -1,5 +1,6 @@
+import products from "products";
 import React, { useContext, useReducer, useMemo } from "react";
-import { cartValues } from "types";
+import { CartDetailProduct, cartValues } from "types";
 import useLocalStorageReducer from "./use-local-storage-reducer";
 
 // Reducers
@@ -10,17 +11,27 @@ const initialCartValues: cartValues = {
   totalPrice: 0,
 };
 
-const addItem = (state: cartValues = {}, product = null, quantity = 0) => {
+const addItem = (
+  state: cartValues = {},
+  product: CartDetailProduct = null,
+  quantity = 0
+): cartValues => {
   if (quantity <= 0 || !product) return state;
-
   let entry = state?.cartDetails?.[product.id];
 
-  // Update item
-  if (entry) {
+  if (entry && entry.variante.name === product.variante.name) {
+    // Update item
     entry.quantity += quantity;
-  }
-  // Add item
-  else {
+  } else {
+    // Add item
+    let varianteFound;
+    if (product.variante.id) {
+      varianteFound = products.find((it) => it.id === product.variante.id);
+      if (varianteFound) {
+        product = { ...varianteFound, variante: product.variante };
+      }
+    }
+
     entry = {
       ...product,
       quantity,
@@ -38,14 +49,26 @@ const addItem = (state: cartValues = {}, product = null, quantity = 0) => {
   };
 };
 
-const removeItem = (state: cartValues = {}, product = null, quantity = 0) => {
+const removeItem = (
+  state: cartValues = {},
+  product: CartDetailProduct = null,
+  quantity = 0
+): cartValues => {
   if (quantity <= 0 || !product) return state;
 
-  let entry = state?.cartDetails?.[product.id];
+  let entry;
+  if (product.variante.id) {
+    entry = state?.cartDetails?.[product.variante.id];
+  } else {
+    entry = state?.cartDetails?.[product.id];
+  }
 
   if (entry) {
     // Remove item
-    if (quantity >= entry.quantity) {
+    if (
+      quantity >= entry.quantity &&
+      entry.variante.name === product.variante.name
+    ) {
       const { [product.id]: id, ...details } = state.cartDetails;
       return {
         ...state,
@@ -81,7 +104,14 @@ const clearCart = () => {
   return initialCartValues;
 };
 
-const cartReducer = (state = {}, action) => {
+const cartReducer = (
+  state = {},
+  action: {
+    product: CartDetailProduct;
+    quantity: number;
+    type: string;
+  }
+) => {
   switch (action.type) {
     case "ADD_ITEM":
       return addItem(state, action.product, action.quantity);
@@ -124,11 +154,13 @@ export const CartProvider = ({ currency = "EUR", children = null }) => {
 export const useShoppingCart = () => {
   const [cart, dispatch]: any = useContext(CartContext);
 
-  const addItem = (product, quantity = 1) =>
+  const addItem = (product: CartDetailProduct, quantity = 1) => {
     dispatch({ type: "ADD_ITEM", product, quantity });
+  };
 
-  const removeItem = (product, quantity = 1) =>
+  const removeItem = (product: CartDetailProduct, quantity = 1) => {
     dispatch({ type: "REMOVE_ITEM", product, quantity });
+  };
 
   const clearCart = () => dispatch({ type: "CLEAR_CART" });
 

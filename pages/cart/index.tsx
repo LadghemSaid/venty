@@ -76,9 +76,9 @@ const Cart = () => {
                 <Link href={`/products/${product.id}`}>
                   <a className="flex items-center space-x-4 group">
                     <div className="relative w-20 h-20 group-hover:scale-110 transition-transform">
-                      {product.images[0] && (
+                      {product?.variante?.images?.[0] && (
                         <Image
-                          src={product.images[0]}
+                          src={product?.variante?.images?.[0]}
                           alt={product.name}
                           layout="fill"
                           objectFit="contain"

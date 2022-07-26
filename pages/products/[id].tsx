@@ -17,14 +17,14 @@ import FakeCounter from "@/components/FakeCounter";
 import Rating from "@/components/Rating";
 import Article from "@/components/Article";
 import { redirectToCheckout } from "@/lib/get-stripe";
-import { ProductType, variantesType } from "types";
+import { CartDetailProduct, ProductType, varianteType } from "types";
 import Variantes from "@/components/Variantes";
 
 const Product = (props: ProductType) => {
   const router = useRouter();
   const { cartDetails, cartCount, addItem } = useShoppingCart();
   const [qty, setQty] = useState<number>(1);
-  const [varianteSelected, setVarianteSelected] = useState<variantesType>(
+  const [varianteSelected, setVarianteSelected] = useState<varianteType>(
     props.variantes[0]
   );
   const [adding, setAdding] = useState<boolean>(false);
@@ -39,7 +39,10 @@ const Product = (props: ProductType) => {
         qty > 1 ? "s" : ""
       }...`
     );
-    addItem(props, qty);
+    addItem(
+      { ...props, variante: varianteSelected } as unknown as CartDetailProduct,
+      qty
+    );
     redirectToCheckout(cartDetails);
   };
 

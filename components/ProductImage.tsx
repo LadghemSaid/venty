@@ -16,8 +16,6 @@ export default function ProductImage({ variantes = [] }) {
       })
     );
   }, []);
-  console.log(imageList);
-
   const [firstSwiper, setFirstSwiper] = useState(null);
   const ProductStoreContext = useContext(ProductStore);
   ProductStoreContext.setSwiperProductPhoto(firstSwiper);
