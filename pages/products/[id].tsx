@@ -4,9 +4,11 @@ import { useRouter } from "next/router";
 import { ProductType } from "types";
 import i18next from "i18next";
 import ProductPage from "@/components/ProductPage";
+import { GApageview } from "@/lib/utils";
 
 const Product = (props: ProductType) => {
   const router = useRouter();
+  GApageview("Product:" + props.name);
 
   return router.isFallback ? (
     <>

@@ -150,6 +150,7 @@ export const useShoppingCart = () => {
   const [cart, dispatch]: any = useContext(CartContext);
 
   const addItem = (product: CartDetailProduct, quantity = 1) => {
+    
     dispatch({ type: "ADD_ITEM", product, quantity });
   };
 

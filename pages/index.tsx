@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/index";
 
 import products from "products";
-import { initializeRandomCookies } from "@/lib/utils";
+import { GApageview, initializeRandomCookies } from "@/lib/utils";
 import moment from "moment";
 import i18next from "i18next";
 import { TimeReducer } from "@/hooks/use-local-timer-reducer";
@@ -15,6 +15,7 @@ export default function Home() {
   useEffect(() => {
     setProductList(initializeRandomCookies(products));
   }, []);
+  GApageview("homepage");
   return (
     <div className="container xl:max-w-screen-xl min-h-screen mx-auto  px-6">
       {MULTI_PRODUCT_SHOP && (

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { useShoppingCart } from "@/hooks/use-shopping-cart";
 import axios from "axios";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, GApageview } from "@/lib/utils";
 import getStripe, { redirectToCheckout } from "@/lib/get-stripe";
 import {
   XCircleIcon,
@@ -18,6 +18,8 @@ import { MULTI_PRODUCT_SHOP } from "contants";
 const Cart = () => {
   const { cartDetails, totalPrice, cartCount, addItem, removeItem, clearCart } =
     useShoppingCart();
+  GApageview("cart");
+
   const [redirecting, setRedirecting] = useState(false);
 
   return (
