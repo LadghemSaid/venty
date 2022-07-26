@@ -7,6 +7,7 @@ import "swiper/css/bundle";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import InnerImageZoom from "react-inner-image-zoom";
 import { ProductStore } from "pages/_app";
+import { GAevent } from "@/lib/utils";
 export default function ProductImage({ variantes = [] }) {
   const [imageList, setimageList] = useState<string[]>([]);
   const [firstSwiper, setFirstSwiper] = useState(null);
@@ -31,6 +32,18 @@ export default function ProductImage({ variantes = [] }) {
         pagination={{ clickable: true }}
         spaceBetween={50}
         slidesPerView={1}
+        onSlideNextTransitionEnd={() => {
+          GAevent({
+            action: "slide",
+            params: "slideNext",
+          });
+        }}
+        onSlidePrevTransitionEnd={() => {
+          GAevent({
+            action: "slide",
+            params: "slidePrev",
+          });
+        }}
         onSwiper={setFirstSwiper}
         controller={firstSwiper}
       >

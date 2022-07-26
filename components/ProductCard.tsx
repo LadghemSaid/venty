@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { useShoppingCart } from "@/hooks/use-shopping-cart";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, GAevent } from "@/lib/utils";
 import { Rating } from "@/components/index";
 import i18next from "i18next";
 
@@ -16,7 +16,7 @@ const ProductCard = (props) => {
 
   const handleOnAddToCart = (event) => {
     event.preventDefault();
-
+    GAevent({ action: "click", params: "handleOnAddToCartProductCard" });
     setAdding(true);
     toastId.current = toast.loading(
       i18next.t("products.adding-one-item").toString()

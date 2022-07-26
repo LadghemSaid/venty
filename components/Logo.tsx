@@ -1,9 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { TITLE_SHOP, URL_LOGO } from "contants";
+import { GAevent } from "@/lib/utils";
 
 const Logo = () => (
-  <Link href="/">
+  <Link
+    href="/"
+    onClick={() => {
+      GAevent({
+        action: "click",
+        params: "goToHomepage",
+      });
+    }}
+  >
     <a className="flex items-center space-x-2">
       <Image src={URL_LOGO} alt="Logo" width={32} height={32} />
       <span className="hidden sm:inline-block font-extrabold text-3xl text-gray-700">

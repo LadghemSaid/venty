@@ -20,6 +20,7 @@ import { varianteType } from "types";
 import products from "products";
 import i18next from "i18next";
 import Head from "next/head";
+import { GAevent } from "@/lib/utils";
 
 export default function ProductPage(props) {
   const { cartDetails, cartCount, addItem, clearCart } = useShoppingCart();
@@ -49,6 +50,7 @@ export default function ProductPage(props) {
       },
       qty
     );
+    GAevent({ action: "click", params: "handleOnAddToCartProductPage" });
     setgoToCheckout(true);
   };
 
