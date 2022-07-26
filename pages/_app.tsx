@@ -13,12 +13,13 @@ import { useEffect, useReducer, useState, createContext } from "react";
 import { TimeReducer } from "@/hooks/use-local-timer-reducer";
 import products from "products";
 import Cookies from "js-cookie";
-import { initializeRandomCookies } from "@/lib/utils";
+import { GApageview, initializeRandomCookies } from "@/lib/utils";
 import { FakeDataMachine } from "machines/FakeDataMachine";
 import { useMachine } from "@xstate/react";
 import moment from "moment";
 import { ProductListType } from "types";
 import Swiper from "swiper";
+import { useRouter } from "next/router";
 
 i18next.init({
   lng: "fr", // if you're using a language detector, do not define the lng option
@@ -44,6 +45,22 @@ export const ProductStore = createContext<{
 
 function MyApp({ Component, pageProps }) {
   // const [state, send] = useMachine(FakeDataMachine);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      GApageview(url);
+    };
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   const [productList, setProductList] = useState(
     initializeRandomCookies(products)
