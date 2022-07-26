@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+  venty_frontend_preprod:
+    env_file: ../secrets/venty/frontend_preprod.env
+    container_name: venty_app_preprod
+    restart: on-failure:5
+    build:
+      context: ./
+      dockerfile: Dockerfile_preprod
+    # environment:
+    #   - NODE_ENV=${ENV_PREPROD}
+    #   - LETSENCRYPT_HOST=${URL_FRONTEND_PREPROD}
+    #   - VIRTUAL_PROTO=http
+    #   - VIRTUAL_HOST=${URL_FRONTEND_PREPROD}
+    # - VIRTUAL_PROTO=https
+    # - VIRTUAL_PORT=3000
+    # - CERT_NAME=${URL_FRONTEND_PREPROD} ## Add this
+    # command: 'tail -f /dev/null'
+    volumes:
+      - ./:/srv/app
+      - /srv/app/.next
+    expose:
+      - 3000
+    networks:
+      - nginx_main
+    labels:
+      fr.ladghem.ondemand.enable: 40
+      fr.ladghem.ondemand.timeout: 3600
+
+  venty_frontend_prod:
+    env_file: ../secrets/venty/frontend_prod.env
+    container_name: venty_app_prod
+    # command: "tail -f /dev/null"
+    command: bash -c 'npm run build && npm run start'
+    restart: on-failure:5
+    build:
+      context: ./
+      dockerfile: Dockerfile_prod
+    # environment:
+    #   - NODE_ENV=${ENV_PROD}
+    #   - LETSENCRYPT_HOST=${URL_FRONTEND_PROD}
+    #   - VIRTUAL_PROTO=http
+    #   - VIRTUAL_HOST=${URL_FRONTEND_PROD}
+    # - VIRTUAL_PROTO=https
+    # - VIRTUAL_PORT=3000
+    # - CERT_NAME=${URL_FRONTEND_PROD} ## Add this
+    volumes:
+      - ./:/srv/app
+      - /srv/app/.next
+    expose:
+      - 3000
+    networks:
+      - nginx_main
+
+networks:
+  nginx_main:
+    external: true
+  backend:
+    external: true
+  monitored:
+    external: true
