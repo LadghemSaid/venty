@@ -8,7 +8,7 @@ const base = new Airtable({
   endpointUrl: "https://api.airtable.com",
 }).base(process.env.AIRTABLE_BASE);
 
-export function generate_order(event) {
+export function generate_order(event): string {
   const {
     data: { object: data },
   } = event;
@@ -21,6 +21,7 @@ export function generate_order(event) {
       `(${it.quantity}) (${itFound.variantes?.[0]?.name || "Default"})`
     );
   });
+  let recordCreated;
   base("Commandes").create(
     [
       {
@@ -46,7 +47,9 @@ export function generate_order(event) {
           payment_intent: data.payment_intent,
           payment_status: data.payment_status,
           livemode: data.livemode,
-          "Paiement Stripe": `https://dashboard.stripe.com/test/payments/${data.payment_intent}`,
+          "Paiement Stripe": `https://dashboard.stripe.com${
+            process.env.NODE_ENV === "production" ? "" : "/test"
+          }/payments/${data.payment_intent}`,
           Panier: realItem,
           Status: "à traiter",
           "Crée le": moment(event.created).format("LLL"),
@@ -62,8 +65,10 @@ export function generate_order(event) {
         return;
       }
       records.forEach(function (record) {
+        recordCreated = record.getId();
         // console.log(record.getId());
       });
     }
   );
+  return recordCreated;
 }

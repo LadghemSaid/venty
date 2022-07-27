@@ -4,7 +4,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { useShoppingCart } from "@/hooks/use-shopping-cart";
 import axios from "axios";
-import { formatCurrency, GApageview } from "@/lib/utils";
+import { formatCurrency, GAevent, GApageview } from "@/lib/utils";
 import getStripe, { redirectToCheckout } from "@/lib/get-stripe";
 import {
   XCircleIcon,
@@ -58,7 +58,15 @@ const Cart = () => {
                 {i18next.t("cart.we-have-the-product-you-need")}
 
                 <Link href="/">
-                  <a className="text-red-500 underline ml-2">
+                  <a
+                    onClick={() =>
+                      GAevent({
+                        action: "click",
+                        params: "clickOnHere",
+                      })
+                    }
+                    className="text-red-500 underline ml-2"
+                  >
                     {i18next.t("cart.here").toString()}
                   </a>
                 </Link>
@@ -81,7 +89,15 @@ const Cart = () => {
                     MULTI_PRODUCT_SHOP ? `/products/${product.id_price}` : `/`
                   }
                 >
-                  <a className="flex items-center space-x-4 group">
+                  <a
+                    onClick={() => {
+                      GAevent({
+                        action: "click",
+                        params: "clickFromCartGoToProduct:" + product.name,
+                      });
+                    }}
+                    className="flex items-center space-x-4 group"
+                  >
                     <div className="relative w-20 h-20 group-hover:scale-110 transition-transform">
                       {product?.variante?.images?.[0] && (
                         <Image

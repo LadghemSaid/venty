@@ -2,6 +2,7 @@ import { generate_order } from "@/lib/order-functions";
 import Stripe from "stripe";
 import { buffer } from "micro";
 import { notify } from "@/lib/utils";
+const fs = require("fs");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, null);
 
 export const config = {
@@ -38,10 +39,24 @@ export default async function handler(req, res) {
     if (event.type === "checkout.session.completed") {
       console.log(`💰  Payment received!`);
       //Write order to airtable
-      generate_order(event);
+      const commandeId = generate_order(event);
+      //Write order to json localy
+
+      let data = JSON.stringify(event);
+      fs.writeFile("../../../commandes/.json", data, (err) => {
+        if (err) throw err;
+        console.log("Data written to file");
+      });
 
       //Send notification via gotify
-      notify("Venty", "Nouvelle commande");
+      notify(
+        "Venty",
+        "Nouvelle commande",
+        5,
+        `https://airtable.com/${process.env.AIRTABLE_BASE}/${process.env.AIRTABLE_COMMANDE}/${commandeId}?blocks=hide`
+      );
+
+      //Send email to customer
     } else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
     }

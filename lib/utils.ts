@@ -115,7 +115,7 @@ export function capitalize(s) {
   return s[0].toUpperCase() + s.slice(1);
 }
 
-export async function notify(title, message, priority = 5) {
+export async function notify(title, message, priority = 5, url = "") {
   await axios({
     method: "post",
     url:
@@ -129,16 +129,18 @@ export async function notify(title, message, priority = 5) {
       message: message,
       priority: priority,
       extras: {
-        "android::action": {
-          onReceive: {
-            intentUrl: `https://airtable.com/app1dpZgQXRlK6WCU/tbl8W57F0RicQlUha/viwzBt8bHI44FhFlK?blocks=hide`,
+        ...(url.length > 0 && {
+          "android::action": {
+            onReceive: {
+              intentUrl: url,
+            },
           },
-        },
-        "client::notification": {
-          click: {
-            url: `https://airtable.com/app1dpZgQXRlK6WCU/tbl8W57F0RicQlUha/viwzBt8bHI44FhFlK?blocks=hide`,
+          "client::notification": {
+            click: {
+              url,
+            },
           },
-        },
+        }),
       },
     }),
   });

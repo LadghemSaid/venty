@@ -15,16 +15,16 @@ const Header = () => {
         <HeadBangs />
         <div className="container xl:max-w-screen-xl mx-auto p-6 flex justify-between">
           <Logo />
-          <Link
-            onClick={() => {
-              GAevent({
-                action: "click",
-                params: "goToCart",
-              });
-            }}
-            href="/cart"
-          >
-            <a className="flex items-center space-x-1 text-gray-700 hover:text-gray-900">
+          <Link href="/cart">
+            <a
+              onClick={() => {
+                GAevent({
+                  action: "click",
+                  params: "goToCart",
+                });
+              }}
+              className="flex items-center space-x-1 text-gray-700 hover:text-gray-900"
+            >
               <div className="relative">
                 <ShoppingCartIcon className="w-7 h-7 flex-shrink-0" />
               </div>

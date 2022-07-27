@@ -7,6 +7,8 @@
       "title-shop": "Venty Store",
       "destokage-finish-in": "Le destockage se termine dans",
       "satisfied-or-refund": "Satisfait ou remboursé.",
+      "thanks-for-your-order": "Merci pour votre commande!",
+      "check-yout-inbox-for-receipt": "Vérifiez votre boîte de réception pour le reçu.",
       "left-only": "Plus que",
       "items-in-stock": "{{itemsCount}} ventilateurs",
       "title-line": "Solutions rafraichissante",
@@ -39,6 +41,9 @@
       "redirecting": "Redirection",
       "payment": "Paiement",
       "payment-secure": "Paiement sécurisé"
+    },
+    "error": {
+      "undefined": "Oups, quelque chose s'est mal passé!"
     },
     "footer": {
       "tagline": "Tous droits réservés.",
