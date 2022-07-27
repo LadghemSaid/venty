@@ -160,6 +160,13 @@ export const GApageview = (url) => {
 };
 
 // log specific events happening.
-export const GAevent = ({ action, params }) => {
-  typeof window !== "undefined" && window.gtag("event", action, params);
+export const GAevent = ({
+  action,
+  params,
+}: {
+  action: string;
+  params: string;
+}) => {
+  typeof window !== "undefined" &&
+    window.gtag("event", action, { type: params });
 };
