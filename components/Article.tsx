@@ -4,7 +4,9 @@ import Tiptap from "./Tiptap";
 
 export default function Article({ name }) {
   const router = useRouter();
-  const [showEditor, setshowEditor] = useState(router.query.edition);
+  const [showEditor, setshowEditor] = useState(
+    router?.query?.edition?.length > 0 || false
+  );
   const [password, setpassword] = useState("");
   console.log(router.query.edition, showEditor);
   function handleSubmitEditor() {
