@@ -41,7 +41,7 @@ const Success = () => {
       ) : !data ? (
         <div className="p-2 rounded-md bg-gray-100 text-gray-500 max-w-md mx-auto">
           <p className="text-lg animate-pulse">
-            {i18next.t("generic.loading")}...
+            <>{i18next.t("generic.loading")}...</>
           </p>
         </div>
       ) : (
