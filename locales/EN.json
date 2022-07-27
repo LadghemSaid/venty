@@ -1,5 +1,61 @@
 {
   "translation": {
-    "title_shop": "France-Moustique"
+    "generic": {
+      "brand": "Venty Store",
+      "meta-description": "Ventilateurs portable, pliable, téléscopique, rechargeable en livraison",
+      "loading": "Chargement",
+      "title-shop": "Venty Store",
+      "destokage-finish-in": "Le destockage se termine dans",
+      "satisfied-or-refund": "Satisfait ou remboursé.",
+      "thanks-for-your-order": "Merci pour votre commande!",
+      "check-yout-inbox-for-receipt": "Vérifiez votre boîte de réception pour le reçu.",
+      "left-only": "Plus que",
+      "items-in-stock": "{{itemsCount}} ventilateurs",
+      "title-line": "Solutions rafraichissante",
+      "days": "Jours",
+      "hours": "Heures",
+      "minutes": "Minutes",
+      "secondes": "Secondes"
+    },
+    "products": {
+      "price": "Prix",
+      "quantity": "Quantité",
+      "variantes": "Variantes",
+      "disponibility": "Disponibilité",
+      "in-stock": "En stock",
+      "product": "Produit",
+      "adding-one-item": "Ajout 1 produit..."
+    },
+    "cart": {
+      "add": "Ajout",
+      "added": "Ajouté",
+      "my-cart": "Mon panier",
+      "remove-all": "Tout retirer",
+      "your-cart": "Votre panier",
+      "your-cart-is-empty": "Votre panier est vide.",
+      "we-have-the-product-you-need": "Nous avons le produit qu'il vous faut",
+      "adding": "Ajout",
+      "add-to-cart": "Ajouter au panier",
+      "here": "ici !",
+      "total": "Total",
+      "redirecting": "Redirection",
+      "payment": "Paiement",
+      "payment-secure": "Paiement sécurisé"
+    },
+    "error": {
+      "undefined": "Oups, quelque chose s'est mal passé!"
+    },
+    "footer": {
+      "tagline": "Tous droits réservés.",
+      "sub-tagline": ""
+    },
+    "header": {
+      "tagline": "",
+      "sub-tagline": ""
+    },
+    "testimonials": {
+      "tagline": "",
+      "sub-tagline": ""
+    }
   }
 }

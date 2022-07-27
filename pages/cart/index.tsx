@@ -13,7 +13,7 @@ import {
   PlusSmIcon,
 } from "@heroicons/react/outline";
 import i18next from "i18next";
-import { MULTI_PRODUCT_SHOP } from "contants";
+import { MULTI_PRODUCT_SHOP, TITLE_SHOP } from "contants";
 
 const Cart = () => {
   const { cartDetails, totalPrice, cartCount, addItem, removeItem, clearCart } =
@@ -27,7 +27,7 @@ const Cart = () => {
       <Head>
         <title>
           <>
-            {i18next.t("cart.my-cart")} | {i18next.t("title_shop")}
+            {i18next.t("cart.my-cart")} | {TITLE_SHOP}
           </>
         </title>
       </Head>

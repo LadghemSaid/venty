@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+commandes/*
+/commandes/*
+/commandes
+commandes
 
 # testing
 /coverage

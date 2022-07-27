@@ -2,6 +2,7 @@ import { generate_order } from "@/lib/order-functions";
 import Stripe from "stripe";
 import { buffer } from "micro";
 import { notify } from "@/lib/utils";
+import moment from "moment";
 const fs = require("fs");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, null);
 
@@ -40,13 +41,17 @@ export default async function handler(req, res) {
       console.log(`💰  Payment received!`);
       //Write order to airtable
       const commandeId = generate_order(event);
-      //Write order to json localy
 
+      //Write order to json localy
       let data = JSON.stringify(event);
-      fs.writeFile("../../../commandes/.json", data, (err) => {
-        if (err) throw err;
-        console.log("Data written to file");
-      });
+      fs.writeFile(
+        `../../../commandes/${moment().format("DD/MM/YYYY h-mm-ss")}.json`,
+        data,
+        (err) => {
+          if (err) throw err;
+          console.log("Data written to file");
+        }
+      );
 
       //Send notification via gotify
       notify(

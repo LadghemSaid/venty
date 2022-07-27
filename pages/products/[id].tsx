@@ -27,7 +27,6 @@ const Product = (props: ProductType) => {
 };
 
 export async function getStaticPaths() {
-  console.log(products);
   return {
     // Existing posts are rendered to HTML at build time
     paths: products.map((item) => ({

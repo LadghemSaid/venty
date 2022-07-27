@@ -1,9 +1,16 @@
+import { useRouter } from "next/router";
 import React from "react";
+import Tiptap from "./Tiptap";
 
 export default function Article({ name }) {
+  const router = useRouter();
+  console.log(router);
+
   return (
     <>
       <section className="article font-medium">
+        <Tiptap />
+
         <h2 className="text-2xl mt-10 mb-5 font-black">
           La chaleur n'est plus un problème !
         </h2>
