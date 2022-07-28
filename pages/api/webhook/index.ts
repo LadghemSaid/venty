@@ -58,7 +58,7 @@ export default async function handler(req, res) {
         "Venty",
         "Nouvelle commande",
         5,
-        `https://airtable.com/${process.env.AIRTABLE_BASE}/${process.env.AIRTABLE_COMMANDE}/${commandeId}?blocks=hide`
+        `https://airtable.com/${process.env.AIRTABLE_BASE}/${process.env.AIRTABLE_COMMANDE}/${process.env.AIRTABLE_VIEW}/${commandeId}?blocks=hide`
       );
 
       //Send email to customer

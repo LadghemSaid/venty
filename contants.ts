@@ -14,7 +14,7 @@ export const HEAD_BANGS = {
     },
     {
       iconSvg: "/svg/cadeau.svg",
-      text: "Déstockage d'été: -50% !",
+      text: "Déstockage d'été: -40% !",
     },
     {
       iconSvg: "/svg/france.svg",
