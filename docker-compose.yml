@@ -9,7 +9,7 @@ services:
       context: ./
       dockerfile: Dockerfile_preprod
     # environment:
-    #   - NODE_ENV=${ENV_PREPROD}
+    #   - NODE_ENV=${NODE_ENV}
     #   - LETSENCRYPT_HOST=${URL_FRONTEND_PREPROD}
     #   - VIRTUAL_PROTO=http
     #   - VIRTUAL_HOST=${URL_FRONTEND_PREPROD}
@@ -38,7 +38,7 @@ services:
       context: ./
       dockerfile: Dockerfile_prod
     # environment:
-    #   - NODE_ENV=${ENV_PROD}
+    #   - NODE_ENV=${NODE_ENV}
     #   - LETSENCRYPT_HOST=${URL_FRONTEND_PROD}
     #   - VIRTUAL_PROTO=http
     #   - VIRTUAL_HOST=${URL_FRONTEND_PROD}
