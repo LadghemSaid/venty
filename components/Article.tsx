@@ -1,20 +1,24 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tiptap from "./Tiptap";
 
 export default function Article({ name }) {
   const router = useRouter();
-  const [showEditor, setshowEditor] = useState(router.query.edition);
+  const [showEditor, setshowEditor] = useState(router.query.edition === "true");
   const [password, setpassword] = useState("");
-  console.log(router.query.edition, showEditor);
+  console.log(router.query, router.query.edition, showEditor);
   function handleSubmitEditor() {
     console.log("handle submit");
   }
+  useEffect(() => {
+    setshowEditor(router.query.edition === "true");
+  }, [router.query.edition]);
+
   return (
     <>
       {showEditor && (
         <>
-          <Tiptap />
+          <Tiptap name={"article"} />
           <label htmlFor="">Mot de passe</label>
           <input
             type="password"
