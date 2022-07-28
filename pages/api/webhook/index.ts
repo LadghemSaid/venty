@@ -45,7 +45,7 @@ export default async function handler(req, res) {
       //Write order to json localy
       let data = JSON.stringify(event);
       fs.writeFile(
-        `../../../commandes/${moment().format("DD/MM/YYYY h-mm-ss")}.json`,
+        `../../../commandes/${moment().format("DD-MM-YYYY/h-mm-ss")}.json`,
         data,
         (err) => {
           if (err) throw err;

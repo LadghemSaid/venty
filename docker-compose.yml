@@ -25,7 +25,7 @@ services:
     networks:
       - nginx_main
     labels:
-      fr.ladghem.ondemand.enable: 40
+      fr.ladghem.ondemand.enable: 80
       fr.ladghem.ondemand.timeout: 3600
 
   venty_frontend_prod:
@@ -55,8 +55,4 @@ services:
 
 networks:
   nginx_main:
-    external: true
-  backend:
-    external: true
-  monitored:
     external: true

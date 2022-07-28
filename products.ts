@@ -3,7 +3,7 @@ const products: ProductListType = [
   {
     id_price:
       process.env.NODE_ENV === "production"
-        ? "price_1LPSugGYxr8yvqo4YCcsyVor"
+        ? "price_1LPSugGYxr8yvqo4YCcsyVor" // ? "price_1LQRblGYxr8yvqo4NZLnemUJ" //same product but price is 0,10€
         : "price_1LPSuYGYxr8yvqo4QPm64thh",
     name: "VentyPro™",
     description: "",
@@ -12,7 +12,7 @@ const products: ProductListType = [
         name: "blanc",
         id_price:
           process.env.NODE_ENV === "production"
-            ? "price_1LPSugGYxr8yvqo4YCcsyVor"
+            ? "price_1LPSugGYxr8yvqo4YCcsyVor" // ? "price_1LQRblGYxr8yvqo4NZLnemUJ" //same product but price is 0,10€
             : "price_1LPSuYGYxr8yvqo4QPm64thh",
         images: ["/products/img2.png"],
       },
@@ -56,7 +56,7 @@ const products: ProductListType = [
         name: "blanc",
         id_price:
           process.env.NODE_ENV === "production"
-            ? "price_1LPSugGYxr8yvqo4YCcsyVor"
+            ? "price_1LPSugGYxr8yvqo4YCcsyVor" // ? "price_1LQRblGYxr8yvqo4NZLnemUJ" //same product but price is 0,10€
             : "price_1LPSuYGYxr8yvqo4QPm64thh",
         images: ["/products/img2.png"],
       },
