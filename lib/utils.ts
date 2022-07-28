@@ -165,7 +165,7 @@ export const GAevent = ({
   params,
 }: {
   action: string;
-  params: string;
+  params?: string;
 }) => {
   typeof window !== "undefined" &&
     window.gtag("event", action, { type: params });

@@ -19,8 +19,7 @@ const Header = () => {
             <a
               onClick={() => {
                 GAevent({
-                  action: "click",
-                  params: "goToCart",
+                  action: "click:goToCart",
                 });
               }}
               className="flex items-center space-x-1 text-gray-700 hover:text-gray-900"

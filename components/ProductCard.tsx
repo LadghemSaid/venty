@@ -16,7 +16,7 @@ const ProductCard = (props) => {
 
   const handleOnAddToCart = (event) => {
     event.preventDefault();
-    GAevent({ action: "click", params: "handleOnAddToCartProductCard" });
+    GAevent({ action: "click:handleOnAddToCartProductCard" });
     setAdding(true);
     toastId.current = toast.loading(
       i18next.t("products.adding-one-item").toString()
@@ -52,8 +52,7 @@ const ProductCard = (props) => {
       <a
         onClick={() => {
           GAevent({
-            action: "click",
-            params: "clickOnProduct:" + props.name,
+            action: "click:clickOnProduct:" + props.name,
           });
         }}
         className="border rounded-md p-6 group"

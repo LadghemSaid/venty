@@ -8,8 +8,7 @@ const Logo = () => (
     <a
       onClick={() => {
         GAevent({
-          action: "click",
-          params: "goToHomepage",
+          action: "click:goToHomepage",
         });
       }}
       className="flex items-center space-x-2"

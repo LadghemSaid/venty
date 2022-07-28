@@ -12,8 +12,7 @@ export default ({ setQty, qty }) => {
         <button
           onClick={() => {
             GAevent({
-              action: "click",
-              params: "decreaseQuantity",
+              action: "click:decreaseQuantity",
             });
             setQty((prev) => prev - 1);
           }}
@@ -26,7 +25,7 @@ export default ({ setQty, qty }) => {
         <button
           onClick={() => {
             GAevent({
-              action: "click",
+              action: "click:increaseQuantity",
               params: "increaseQuantity",
             });
             setQty((prev) => prev + 1);

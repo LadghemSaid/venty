@@ -50,7 +50,7 @@ export default function ProductPage(props) {
       },
       qty
     );
-    GAevent({ action: "click", params: "handleOnAddToCartProductPage" });
+    GAevent({ action: "click:handleOnAddToCartProductPage" });
     setgoToCheckout(true);
   };
 

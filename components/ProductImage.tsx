@@ -34,14 +34,12 @@ export default function ProductImage({ variantes = [] }) {
         slidesPerView={1}
         onSlideNextTransitionEnd={() => {
           GAevent({
-            action: "slide",
-            params: "slideNext",
+            action: "slide:slideNext",
           });
         }}
         onSlidePrevTransitionEnd={() => {
           GAevent({
-            action: "slide",
-            params: "slidePrev",
+            action: "slide:slidePrev",
           });
         }}
         onSwiper={setFirstSwiper}

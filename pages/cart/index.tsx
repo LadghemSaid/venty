@@ -61,8 +61,7 @@ const Cart = () => {
                   <a
                     onClick={() =>
                       GAevent({
-                        action: "click",
-                        params: "clickOnHere",
+                        action: "click:clickOnHere",
                       })
                     }
                     className="text-red-500 underline ml-2"
@@ -92,8 +91,7 @@ const Cart = () => {
                   <a
                     onClick={() => {
                       GAevent({
-                        action: "click",
-                        params: "clickFromCartGoToProduct:" + product.name,
+                        action: "click:clickFromCartGoToProduct" + product.name,
                       });
                     }}
                     className="flex items-center space-x-4 group"

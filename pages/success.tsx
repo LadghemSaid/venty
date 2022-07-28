@@ -23,7 +23,7 @@ const Success = () => {
     if (data) {
       GAevent({
         action: "purchased",
-        params: "itemsCount:" + cartCount,
+        // params: "itemsCount:" + cartCount,
       });
       shootFireworks();
       clearCart();
