@@ -128,7 +128,7 @@ export async function notify(title, message, priority = 5, url = "") {
       "Content-Type": "application/json",
     },
     data: JSON.stringify({
-      title: title,
+      title: title + " " + process.env.NODE_ENV,
       message: message,
       priority: priority,
       extras: {

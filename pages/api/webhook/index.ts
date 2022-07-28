@@ -40,18 +40,26 @@ export default async function handler(req, res) {
     if (event.type === "checkout.session.completed") {
       console.log(`💰  Payment received!`);
       //Write order to airtable
-      const commandeId = generate_order(event);
+      const commandeId = await generate_order(event);
 
-      //Write order to json localy
-      let data = JSON.stringify(event);
-      fs.writeFile(
-        `../../../commandes/${moment().format("DD-MM-YYYY/h-mm-ss")}.json`,
-        data,
-        (err) => {
+      try {
+        //Write order to json localy
+        let data = JSON.stringify(event);
+
+        let filePath = `./../../../commandes/${moment().format(
+          "DD-MM-YYYY/h-mm-ss"
+        )}.json`;
+
+        fs.writeFile(filePath, data, (err) => {
           if (err) throw err;
-          console.log("Data written to file");
-        }
-      );
+          console.log("Commande Data written to file :" + filePath);
+        });
+      } catch (error) {
+        console.error(
+          "Erreur lors de l'ecriture de la commande en local : ",
+          error
+        );
+      }
 
       //Send notification via gotify
       notify(

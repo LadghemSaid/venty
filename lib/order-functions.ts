@@ -8,7 +8,7 @@ const base = new Airtable({
   endpointUrl: "https://api.airtable.com",
 }).base(process.env.AIRTABLE_BASE);
 
-export function generate_order(event): string {
+export async function generate_order(event): Promise<string> {
   const {
     data: { object: data },
   } = event;
@@ -22,7 +22,7 @@ export function generate_order(event): string {
     );
   });
   let recordCreated;
-  base("Commandes").create(
+  const records = await base("Commandes").create(
     [
       {
         fields: {
@@ -58,17 +58,8 @@ export function generate_order(event): string {
         },
       },
     ],
-    { typecast: true },
-    function (err, records) {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      records.forEach(function (record) {
-        recordCreated = record.getId();
-        // console.log(record.getId());
-      });
-    }
+    { typecast: true }
   );
-  return recordCreated;
+
+  return records[0].getId();
 }

@@ -5,7 +5,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, null);
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    //Notif here une perssonne va jusqu'au paiment
     try {
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
@@ -38,6 +37,7 @@ export default async function handler(req, res) {
         success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/cart`,
       });
+      //Notif here une perssonne va jusqu'au paiment
       notify("Venty", "Un client potentiel est sur le point de checkout", 2);
       res.status(200).json(session);
     } catch (err) {

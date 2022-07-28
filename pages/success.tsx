@@ -49,7 +49,7 @@ const Success = () => {
             <span>{i18next.t("generic.thanks-for-your-order").toString()}</span>
           </h2>
           <p className="text-lg mt-3">
-            {i18next.t("check-yout-inbox-for-receipt").toString()}
+            {i18next.t("generic.check-your-inbox-for-receipt").toString()}
           </p>
         </div>
       )}
