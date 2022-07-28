@@ -52,7 +52,7 @@ export function generate_order(event): string {
           }/payments/${data.payment_intent}`,
           Panier: realItem,
           Status: "à traiter",
-          "Crée le": moment(event.created).format("LLL"),
+          "Crée le": moment.unix(event.created).format("LLL"),
           "Total payé": formatCurrency(data.amount_total),
           amount_subtotal: formatCurrency(data.amount_subtotal),
         },

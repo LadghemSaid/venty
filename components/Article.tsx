@@ -6,7 +6,6 @@ export default function Article({ name }) {
   const router = useRouter();
   const [showEditor, setshowEditor] = useState(router.query.edition === "true");
   const [password, setpassword] = useState("");
-  console.log(router.query, router.query.edition, showEditor);
   function handleSubmitEditor() {
     console.log("handle submit");
   }

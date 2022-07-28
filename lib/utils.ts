@@ -5,6 +5,9 @@ import confetti from "canvas-confetti";
 import Cookies from "js-cookie";
 import { ProductListType, ProductType } from "types";
 
+export function isWhatPercentOf(numA, numB) {
+  return (Math.floor((numA / numB) * 100 * 100) / 100).toFixed(0);
+}
 export const formatCurrency = (amount = 0, currency = "EUR") =>
   new Intl.NumberFormat("fr-FR", {
     style: "currency",

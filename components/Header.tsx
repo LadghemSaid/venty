@@ -13,7 +13,7 @@ const Header = () => {
     <>
       <header className="sticky top-0 bg-white z-10 shadow">
         <HeadBangs />
-        <div className="container xl:max-w-screen-xl mx-auto p-6 flex justify-between">
+        <div className="container xl:max-w-screen-xl mx-auto p-2 md:p-6 flex justify-between">
           <Logo />
           <Link href="/cart">
             <a

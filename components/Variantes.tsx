@@ -14,6 +14,7 @@ export default ({
   product: ProductType;
 }) => {
   function handleSetVariante(variante) {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     ProductStoreContext?.swiperProductPhoto?.slideTo(
       product.variantes.findIndex((it) => it.name === variante.name) || 0
     );
